@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * Page which include locators and methods for google search page #1
+ */
 public class SearchPage1 extends BasePage {
 
     @FindBy (xpath = "//a[@id='logo']")
@@ -23,17 +26,36 @@ public class SearchPage1 extends BasePage {
     @FindBy(id = "pnnext")
     private WebElement nextPageBtn;
 
+    /**
+     * Constructor which extends driver from base page
+     * Initialization all elements
+     * @param driver
+     */
     public SearchPage1(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
+
+    /**
+     * Method returns confirmation that is search page is loaded
+     * @return page isDisplayed
+     */
     public boolean pageIsLoaded(){
         return WaitUntilElementDisplayed(logo,6).isDisplayed();
     }
+
+    /**
+     * Method returns size of links
+     * @return int
+     */
     public int numberOfFoundResults(){
         return numberOfLinks.size();
     }
 
+    /**
+     * Method which gets of test from titles
+     * @return titleText
+     */
     private List<String> getTitlesLinks() {
         List<String> titleText = new ArrayList<String>();
         Iterator<WebElement> iterator = titleTextLinksList.iterator();
@@ -44,6 +66,12 @@ public class SearchPage1 extends BasePage {
         }
         return titleText;
     }
+
+    /**
+     * Method which compare title test with the searchWord
+     * @param searchWord
+     * @return true or false
+     */
     public boolean isSearchLinksContained(String searchWord){
         List<String> titleText = getTitlesLinks();
         boolean isSearchLinksContained = false;
@@ -54,6 +82,11 @@ public class SearchPage1 extends BasePage {
         }
         return isSearchLinksContained;
     }
+
+    /**
+     * Method click next page link
+     * @return
+     */
     public SearchPage2 clickToNextPage(){
         nextPageBtn.click();
         return new SearchPage2(driver);

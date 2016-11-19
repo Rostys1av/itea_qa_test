@@ -15,14 +15,28 @@ public class SearchPage2 extends BasePage{
 
     @FindBy(xpath = ".//*[@id='rso']//div/h3")
     private List<WebElement> titleTextLinksListOf2thPage;
+
+    /**Constructor which extends driver from base page
+     * Initialization all elements
+     * @param driver
+     */
     public SearchPage2(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
+
+    /**
+     * Method returns size of links
+     * @return int
+     */
     public int numberOfFoundResults(){
         return numberOfLinksOf2thPage.size();
     }
 
+    /**
+     * Method which gets of test from titles
+     * @return titleText
+     */
     private List<String> getTitlesLinks() {
         List<String> titleText = new ArrayList<String>();
         Iterator<WebElement> iterator = titleTextLinksListOf2thPage.iterator();
@@ -33,6 +47,12 @@ public class SearchPage2 extends BasePage{
         }
         return titleText;
     }
+
+    /**
+     * Method which compare title test with the searchWord
+     * @param searchWord
+     * @return true or false
+     */
     public boolean isSearchLinksContained(String searchWord){
         List<String> titleText = getTitlesLinks();
         boolean isSearchLinksContained = false;
