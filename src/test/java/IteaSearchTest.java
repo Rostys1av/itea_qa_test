@@ -4,9 +4,6 @@ import page.MainPageGoogle;
 import page.SearchPage1;
 import page.SearchPage2;
 
-/**
- *
- */
 public class IteaSearchTest extends BaseTest {
 
     /**
@@ -17,10 +14,10 @@ public class IteaSearchTest extends BaseTest {
         MainPageGoogle mainPageGoogle = new MainPageGoogle(getDriver());
         SearchPage1 searchPage1=mainPageGoogle.fillAndClick("ITEA");
         searchPage1.pageIsLoaded();
-        Assert.assertEquals(searchPage1.numberOfFoundResults(),7);
+        Assert.assertEquals(searchPage1.numberOfFoundResults(),7,"number of link doesn't equal");
         Assert.assertTrue(searchPage1.isSearchLinksContained("ITEA"));
         SearchPage2 searchPage2=searchPage1.clickToNextPage();
-        Assert.assertEquals(searchPage2.numberOfFoundResults(),7);
+        Assert.assertEquals(searchPage2.numberOfFoundResults(),7,"number of link doesn't equal");
         Assert.assertTrue(searchPage2.isSearchLinksContained("ITEA"));
 
 
